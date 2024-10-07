@@ -24,17 +24,25 @@ namespace Lab
 
         public override string ToString()
         {
-            return $"{nom}/{denom}";
+            if(nom<0 || denom < 0)
+                return $"-({Math.Abs(nom)}/{Math.Abs(denom)})";
+            else if(nom < 0 && denom < 0)
+                return $"{Math.Abs(nom)}/{Math.Abs(denom)}";
+            else
+                return $"{nom}/{denom}";
         }
 
+        /*public string ToStringWithIntegerPart(MyFrac f)
+        {
 
+        }*/
     }
 
     class Program
     {
         static void Main(string[] args)
         {
-            
+            Console.WriteLine(new MyFrac(-15,40));
         }
     }
 }
