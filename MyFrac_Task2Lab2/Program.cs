@@ -31,10 +31,7 @@ namespace Lab
             }
             set
             {
-                if (value!=0) 
-                {
                     nom = value;
-                }
             }
         }
 
@@ -121,7 +118,7 @@ namespace Lab
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(new MyFrac(17,7).ToStringWithIntegerPart());
+            
         }
     }
 }
