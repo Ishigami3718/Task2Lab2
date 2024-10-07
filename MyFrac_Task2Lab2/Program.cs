@@ -94,6 +94,18 @@ namespace Lab
         {
             return new MyFrac(f1.nom * f2.denom, f1.denom * f2.nom);
         }
+
+        static MyFrac CalcSum1(int n)
+        {
+            MyFrac res = new MyFrac(0,1);
+            for(int i = 0; i < n; i++)
+            {
+                res += new MyFrac(1, i * (i + 1));
+            }
+            return res;
+        }
+
+
     }
 
     class Program
