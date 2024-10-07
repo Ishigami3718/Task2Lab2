@@ -105,6 +105,15 @@ namespace Lab
             return res;
         }
 
+        static MyFrac CalcSum2(int n)
+        {
+            MyFrac res = new MyFrac(1, 1);
+            for (int i = 0; i < n; i++)
+            {
+                res *= new MyFrac(1,1)-new MyFrac(1,i*i);
+            }
+            return res;
+        }
 
     }
 
