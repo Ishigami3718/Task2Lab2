@@ -62,12 +62,37 @@ namespace Lab
                 return $"{nom}/{denom}";
         }
 
-        public string ToStringWithIntegerPart(MyFrac f)
+        public string ToStringWithIntegerPart()
         {
-            if (f.ToString()[0] == '-')
-                return $"-({f.nom/f.denom}+{f.nom%f.denom/f.denom})";
+            if (this.ToString()[0] == '-')
+                return $"-({nom/denom}+{nom%denom/denom})";
             else
-                return $"{f.nom / f.denom}+{new MyFrac(f.nom % f.denom, f.denom)}";
+                return $"{nom / denom}+{new MyFrac(nom % denom, denom)}";
+        }
+
+        public double DoubleValue()
+        {
+            return nom/denom;
+        }
+
+        public static MyFrac operator +(MyFrac f1,MyFrac f2)
+        {
+            return new MyFrac(f1.nom*f2.denom + f2.nom*f1.denom, f1.denom * f2.denom);
+        }
+
+        public static MyFrac operator -(MyFrac f1, MyFrac f2)
+        {
+            return new MyFrac(f1.nom * f2.denom - f2.nom * f1.denom, f1.denom * f2.denom);
+        }
+
+        public static MyFrac operator *(MyFrac f1, MyFrac f2)
+        {
+            return new MyFrac(f1.nom * f2.nom, f1.denom * f2.denom);
+        }
+
+        public static MyFrac operator /(MyFrac f1, MyFrac f2)
+        {
+            return new MyFrac(f1.nom * f2.denom, f1.denom * f2.nom);
         }
     }
 
@@ -75,7 +100,7 @@ namespace Lab
     {
         static void Main(string[] args)
         {
-            Console.WriteLine((new MyFrac(17,7).ToStringWithIntegerPart(new MyFrac(17, 7))));
+            Console.WriteLine(new MyFrac(17,7).ToStringWithIntegerPart());
         }
     }
 }
