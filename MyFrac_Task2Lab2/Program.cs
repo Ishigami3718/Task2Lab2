@@ -70,9 +70,9 @@ namespace Lab
             }
             else res = $"{nom / denom}+{new MyFrac(nom % denom, denom)}";
             if (this.ToString()[0] == '-')
-                return $"-({res})";
+                return res;
             else
-                return $"{res}";
+                return res;
         }
 
         public double DoubleValue()
@@ -126,7 +126,9 @@ namespace Lab
     {
         static void Main(string[] args)
         {
-            
+            MyFrac mc = new MyFrac(-15,3);
+            Console.WriteLine(mc);
+            Console.WriteLine(mc.ToStringWithIntegerPart());
         }
     }
 }
