@@ -51,7 +51,8 @@ namespace Lab
         }
         public override string ToString()
         {
-            if(nom<0 || denom < 0)
+            if (nom == 0) return "0";
+            else if(nom<0 || denom < 0)
                 return $"-({Math.Abs(nom)}/{Math.Abs(denom)})";
             else if(nom < 0 && denom < 0)
                 return $"{Math.Abs(nom)}/{Math.Abs(denom)}";
@@ -61,15 +62,22 @@ namespace Lab
 
         public string ToStringWithIntegerPart()
         {
+            long newnom = nom % denom;
+            string res = "";
+            if (newnom == 0)
+            {
+                res = $"{nom / denom}";
+            }
+            else res = $"{nom / denom}+{new MyFrac(nom % denom, denom)}";
             if (this.ToString()[0] == '-')
-                return $"-({nom/denom}+{nom%denom/denom})";
+                return $"-({res})";
             else
-                return $"{nom / denom}+{new MyFrac(nom % denom, denom)}";
+                return $"{res}";
         }
 
         public double DoubleValue()
         {
-            return nom/denom;
+            return (double)nom/denom;
         }
 
         public static MyFrac operator +(MyFrac f1,MyFrac f2)
