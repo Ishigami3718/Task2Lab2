@@ -113,7 +113,7 @@ namespace Lab
         public static MyFrac CalcSum2(int n)
         {
             MyFrac res = new MyFrac(1, 1);
-            for (int i = 1; i <= n; i++)
+            for (int i = 2; i <= n; i++)
             {
                 res *= new MyFrac(1,1)-new MyFrac(1,i*i);
             }
