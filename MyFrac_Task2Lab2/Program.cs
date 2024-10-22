@@ -66,11 +66,11 @@ namespace Lab
             string res = "";
             if (newnom == 0)
             {
-                res = $"{nom / denom}";
+                res = $"{Math.Abs(nom / denom)}";
             }
-            else res = $"{nom / denom}+{new MyFrac(nom % denom, denom)}";
+            else res = $"{Math.Abs(nom / denom)}+{new MyFrac(Math.Abs(newnom),Math.Abs(denom))}";
             if (this.ToString()[0] == '-')
-                return res;
+                return $"-({res})";
             else
                 return res;
         }
@@ -100,20 +100,20 @@ namespace Lab
             return new MyFrac(f1.nom * f2.denom, f1.denom * f2.nom);
         }
 
-        static MyFrac CalcSum1(int n)
+        public static MyFrac CalcSum1(int n)
         {
             MyFrac res = new MyFrac(0,1);
-            for(int i = 0; i < n; i++)
+            for(int i = 1; i <= n; i++)
             {
                 res += new MyFrac(1, i * (i + 1));
             }
             return res;
         }
 
-        static MyFrac CalcSum2(int n)
+        public static MyFrac CalcSum2(int n)
         {
             MyFrac res = new MyFrac(1, 1);
-            for (int i = 0; i < n; i++)
+            for (int i = 1; i <= n; i++)
             {
                 res *= new MyFrac(1,1)-new MyFrac(1,i*i);
             }
@@ -126,9 +126,32 @@ namespace Lab
     {
         static void Main(string[] args)
         {
-            MyFrac mc = new MyFrac(-15,3);
-            Console.WriteLine(mc);
-            Console.WriteLine(mc.ToStringWithIntegerPart());
+            Console.WriteLine("Введіть дріб");
+            string[] inp = Console.ReadLine().Split('/');
+                MyFrac mf = new MyFrac(long.Parse(inp[0]), long.Parse(inp[1]));
+                Console.WriteLine("Виведення дробу");
+                Console.WriteLine(mf);
+                Console.WriteLine("Виведення дробу з цілою частиною");
+                Console.WriteLine(mf.ToStringWithIntegerPart());
+                Console.WriteLine("Десятковий дріб");
+                Console.WriteLine(mf.DoubleValue());
+                Console.WriteLine("Введіть другий дріб для операцій");
+                string[] inp1 = Console.ReadLine().Split('/');
+                MyFrac mf1 = new MyFrac(long.Parse(inp1[0]), long.Parse(inp1[1]));
+                Console.WriteLine("Додавання");
+                Console.WriteLine(mf + mf1);
+                Console.WriteLine("Віднімання");
+                Console.WriteLine(mf - mf1);
+                Console.WriteLine("Множення");
+                Console.WriteLine(mf * mf1);
+                Console.WriteLine("Ділення");
+                Console.WriteLine(mf / mf1);
+                Console.WriteLine("Введіть число для обрахуваня сум");
+                int n = int.Parse(Console.ReadLine());
+                Console.WriteLine("Перша сума");
+                Console.WriteLine(MyFrac.CalcSum1(n));
+                Console.WriteLine("Друга сума");
+                Console.WriteLine(MyFrac.CalcSum2(n));
         }
     }
 }
